@@ -1,0 +1,6 @@
+postgres:
+  PGPORT: 5432
+  PGHOST: localhost
+  DATABASE: xxx
+  PGUSER: xxx
+  PGPASSWORD: xxx
