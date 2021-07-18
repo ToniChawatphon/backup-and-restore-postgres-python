@@ -1,4 +1,5 @@
 # backup-and-restore-postgres-python
+This repository helps you in backing up and restoring your Postgresql database
 
 ## Setup dependencies
 ```
@@ -20,7 +21,7 @@ pipenv run python main.py backup -f "backup.tar"
 
 ## How to run restore
 Flag:   
-`-f`: Backup file that you want to restore (recommend stored in .tar format)  
+`-f`: Backup file that you want to restore your postgres (recommend stored in .tar format)  
 ```
 pipenv run python main.py restore -f "backup.tar" 
 ```
