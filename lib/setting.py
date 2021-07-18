@@ -5,6 +5,8 @@ from lib.constant import CREDENTIALS
 
 def get_postgres_credential() -> dict:
     """Get postgres credential from yaml to dict
+        Return:
+            env: (dict)
     """
     config      = read_yaml(CREDENTIALS)
     postgres = config.get('postgres')
