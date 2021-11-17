@@ -44,7 +44,7 @@ def backup_postgres(env: dict, filename: str) -> None:
         print("Backed up PostgreSQL! status: 'succeed'")
 
 
-def restore_postgres(env: dict, filename: str, database_name: str) -> None:
+def restore_postgres(env: dict, database_name: str, filename: str) -> None:
     '''
     Restore PostgreSQL database from .tar file
             Parameters:

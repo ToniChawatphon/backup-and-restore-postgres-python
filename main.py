@@ -14,10 +14,11 @@ def backup(backup_file: str):
     backup_postgres(env, backup_file)
 
 @main.command()
-@click.option('--backup_file', '-f', default='backup.tar', help='Your backup file name')
-def restore(backup_file: str):
+@click.option('--database_name', '-n', help='database name', required=True)
+@click.option('--backup_file',   '-f', default='backup.tar', help='Your backup file name')
+def restore(database_name: str, backup_file: str):
     env = get_postgres_credential()
-    restore_postgres(env, backup_file)
+    restore_postgres(env, database_name, backup_file)
     
 
 if __name__ == '__main__':
