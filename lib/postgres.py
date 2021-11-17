@@ -23,14 +23,16 @@ def backup_postgres(env: dict, filename: str) -> None:
 
     try:
         if platform.system() != 'Windows':
-                process = Popen([f'pg_dump -f {filename} -F tar -w'],
-                                shell=True, 
-                                env=env
-                            )
-                process.wait()
+            commands = [f'pg_dump -f {filename} -F tar -w']
+            process = Popen(commands,
+                            shell=True, 
+                            env=env
+                        )
+            process.wait()
 
         else:
-            process = Popen(['pg_dump', '-f', filename, '-F', 'tar', '-w'], 
+            commands = ['pg_dump', '-f', filename, '-F', 'tar', '-w']
+            process = Popen(commands, 
                             shell=True, 
                             env=env
                         )
@@ -42,7 +44,7 @@ def backup_postgres(env: dict, filename: str) -> None:
         print("Backed up PostgreSQL! status: 'succeed'")
 
 
-def restore_postgres(env: dict, filename: str) -> None:
+def restore_postgres(env: dict, filename: str, database_name: str) -> None:
     '''
     Restore PostgreSQL database from .tar file
             Parameters:
@@ -63,16 +65,18 @@ def restore_postgres(env: dict, filename: str) -> None:
 
     try:
         if platform.system() != 'Windows':
-            process = Popen([f'pg_restore -C -d bubbletea -f {filename} -F tar'], 
-                        shell=True, 
-                        env=env
-                    )
+            commands = [f'pg_restore -C -d {database_name} -f {filename} -F tar']
+            process  = Popen(commands, 
+                             shell=True, 
+                             env=env
+                        )
             process.wait()
         else:
-            process = Popen(['pg_restore', '-C', '-d', 'bubbletea', '-f', filename, '-F', 'tar'], 
-                        shell=True, 
-                        env=env
-                    )
+            commands = ['pg_restore', '-C', '-d', database_name, '-f', filename, '-F', 'tar']
+            process  = Popen(commands, 
+                             shell=True, 
+                             env=env
+                        )
             process.wait()
     except Exception as e:
         raise Exception("Restore PostgreSQL FAIL!", e)
