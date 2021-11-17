@@ -21,7 +21,8 @@ pipenv run python main.py backup -f "backup.tar"
 
 ## How to run restore
 Flag:   
+`-n`: Target database name you want in restore  
 `-f`: Backup file that you want to restore your postgres (recommend stored in .tar format)  
 ```
-pipenv run python main.py restore -f "backup.tar" 
+pipenv run python main.py restore -n "my_database" -f "backup.tar" 
 ```
